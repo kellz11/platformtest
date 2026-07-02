@@ -1,16 +1,7 @@
 name: Install CORE platform
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - ".bootstrap/READY"
   pull_request:
-    types:
-      - opened
-      - synchronize
-  pull_request_target:
     types:
       - opened
       - synchronize
@@ -56,7 +47,7 @@ jobs:
         run: |
           set -euo pipefail
           git clone --depth 1 https://github.com/kellz11/coretestss.git /tmp/core-base
-          tar -C /tmp/core-base --exclude=.git -cf - . | tar -C . -xf -
+          tar -C /tmp/core-base --exclude=.git --exclude=.github -cf - . | tar -C . -xf -
           echo "Static base copied successfully."
 
       - name: Apply platform overlay
@@ -80,7 +71,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf .bootstrap .github/workflows/bootstrap-platform.yml
+          rm -rf .bootstrap
           rm -f INSTALL_REQUEST.md INSTALL_SYNC*
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
