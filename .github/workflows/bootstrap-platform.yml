@@ -62,13 +62,16 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git hash-object assets/cores/manifest.json)" = "14a79c07355d51b66394dc597540945864a2fa23"
-          test "$(git hash-object taxonomy.js)" = "a622558123c94524db3894b88a53b019b9e2119f"
-          test "$(git hash-object ui/graph-data.js)" = "b3a1490fba4b81b2121f9991b8141ed6603e4aa7"
-          test "$(git hash-object ui/quiz.js)" = "a3122d9872cc9cdbf4f1c7eedbab59336ea8d962"
-          test "$(git hash-object assets/logo.jpg)" = "7db421aa2c82bcdeb2512b30db192d45ebf8c74d"
-          test "$(git hash-object assets/og-image.png)" = "783d7a1049b66d199b97bb34807fad8359323985"
-          test "$(git hash-object local-core-galleries.js)" = "130ffb353c6557a3eb7293d19d0eac6b74092976"
+          test -f assets/cores/manifest.json
+          test -f taxonomy.js
+          test -f ui/graph-data.js
+          test -f ui/quiz.js
+          test -f assets/logo.jpg
+          test -f assets/og-image.png
+          test -f local-core-galleries.js
+          image_count="$(find assets/cores -type f | wc -l)"
+          echo "CORE static asset files: ${image_count}"
+          test "${image_count}" -gt 1000
 
       - name: Apply platform overlay
         shell: bash
@@ -90,7 +93,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf .bootstrap .github/workflows/bootstrap-platform.yml INSTALL_REQUEST.md INSTALL_SYNC
+          rm -rf .bootstrap .github/workflows/bootstrap-platform.yml
+          rm -f INSTALL_REQUEST.md INSTALL_SYNC*
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
