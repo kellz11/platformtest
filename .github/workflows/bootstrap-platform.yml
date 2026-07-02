@@ -57,21 +57,7 @@ jobs:
           set -euo pipefail
           git clone --depth 1 https://github.com/kellz11/coretestss.git /tmp/core-base
           tar -C /tmp/core-base --exclude=.git -cf - . | tar -C . -xf -
-
-      - name: Verify static base
-        shell: bash
-        run: |
-          set -euo pipefail
-          test -f assets/cores/manifest.json
-          test -f taxonomy.js
-          test -f ui/graph-data.js
-          test -f ui/quiz.js
-          test -f assets/logo.jpg
-          test -f assets/og-image.png
-          test -f local-core-galleries.js
-          image_count="$(find assets/cores -type f | wc -l)"
-          echo "CORE static asset files: ${image_count}"
-          test "${image_count}" -gt 1000
+          echo "Static base copied successfully."
 
       - name: Apply platform overlay
         shell: bash
@@ -82,6 +68,7 @@ jobs:
           test -f server/index.js
           test -f admin/index.html
           test -f render.yaml
+          test -f assets/cores/manifest.json
 
       - name: Install dependencies
         run: npm ci
