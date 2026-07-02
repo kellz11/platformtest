@@ -1,0 +1,55 @@
+name: Install CORE platform
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".bootstrap/core-platform-deploy.tar.gz"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extract and validate platform
+        shell: bash
+        run: |
+          set -euo pipefail
+          archive=".bootstrap/core-platform-deploy.tar.gz"
+          if [ ! -f "$archive" ]; then
+            echo "Bootstrap archive is not present; nothing to install."
+            exit 0
+          fi
+
+          tar -xzf "$archive" -C .
+          test -f package.json
+          test -f server/index.js
+          test -f index.html
+          test -f render.yaml
+          npm ci
+          npm test
+
+      - name: Commit complete platform
+        shell: bash
+        run: |
+          set -euo pipefail
+          archive=".bootstrap/core-platform-deploy.tar.gz"
+          if [ ! -f "$archive" ]; then
+            exit 0
+          fi
+          rm -f "$archive" ".github/workflows/bootstrap-platform.yml"
+          rmdir .bootstrap 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Install complete CORE platform"
+          git push origin HEAD:main
