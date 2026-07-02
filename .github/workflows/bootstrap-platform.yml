@@ -29,23 +29,39 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: Reconstruct full platform
+      - name: Verify overlay parts
         shell: bash
         run: |
           set -euo pipefail
-          if [ ! -f ".bootstrap/READY" ]; then
-            echo "Bootstrap marker is not present; nothing to install."
-            exit 0
-          fi
+          test -f .bootstrap/READY
+          mapfile -t parts < <(printf '%s\n' .bootstrap/platform-overlay.part-* | sort)
+          printf 'Found %s overlay parts\n' "${#parts[@]}"
+          printf '%s\n' "${parts[@]}"
+          test "${#parts[@]}" -eq 11
 
-          parts=(.bootstrap/platform-overlay.part-*)
-          test ${#parts[@]} -eq 11
-          cat "${parts[@]}" | base64 --decode > /tmp/platform-overlay.tar.gz
-          echo "0816424e04f29a772006dd15588f90ad55a1752c504f29b0d950a0562dc62ca3  /tmp/platform-overlay.tar.gz" | sha256sum --check
+      - name: Reconstruct overlay archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t parts < <(printf '%s\n' .bootstrap/platform-overlay.part-* | sort)
+          cat "${parts[@]}" > /tmp/platform-overlay.b64
+          base64 --decode /tmp/platform-overlay.b64 > /tmp/platform-overlay.tar.gz
+          actual="$(sha256sum /tmp/platform-overlay.tar.gz | cut -d' ' -f1)"
+          echo "Overlay SHA256: ${actual}"
+          test "${actual}" = "0816424e04f29a772006dd15588f90ad55a1752c504f29b0d950a0562dc62ca3"
+          tar -tzf /tmp/platform-overlay.tar.gz >/dev/null
 
+      - name: Clone CORE static base
+        shell: bash
+        run: |
+          set -euo pipefail
           git clone --depth 1 https://github.com/kellz11/coretestss.git /tmp/core-base
           tar -C /tmp/core-base --exclude=.git -cf - . | tar -C . -xf -
 
+      - name: Verify static base
+        shell: bash
+        run: |
+          set -euo pipefail
           test "$(git hash-object assets/cores/manifest.json)" = "14a79c07355d51b66394dc597540945864a2fa23"
           test "$(git hash-object taxonomy.js)" = "a622558123c94524db3894b88a53b019b9e2119f"
           test "$(git hash-object ui/graph-data.js)" = "b3a1490fba4b81b2121f9991b8141ed6603e4aa7"
@@ -54,22 +70,27 @@ jobs:
           test "$(git hash-object assets/og-image.png)" = "783d7a1049b66d199b97bb34807fad8359323985"
           test "$(git hash-object local-core-galleries.js)" = "130ffb353c6557a3eb7293d19d0eac6b74092976"
 
+      - name: Apply platform overlay
+        shell: bash
+        run: |
+          set -euo pipefail
           tar -xzf /tmp/platform-overlay.tar.gz -C .
           test -f package.json
           test -f server/index.js
           test -f admin/index.html
           test -f render.yaml
-          npm ci
-          npm test
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run integration tests
+        run: npm test
 
       - name: Commit complete platform
         shell: bash
         run: |
           set -euo pipefail
-          if [ ! -f ".bootstrap/READY" ]; then
-            exit 0
-          fi
-          rm -rf ".bootstrap" ".github/workflows/bootstrap-platform.yml"
+          rm -rf .bootstrap .github/workflows/bootstrap-platform.yml INSTALL_REQUEST.md INSTALL_SYNC
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
