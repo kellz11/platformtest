@@ -30,7 +30,7 @@ jobs:
           fi
 
           parts=(.bootstrap/platform-overlay.part-*)
-          test ${#parts[@]} -eq 14
+          test ${#parts[@]} -eq 9
           cat "${parts[@]}" | base64 --decode > /tmp/platform-overlay.tar.gz
           echo "0816424e04f29a772006dd15588f90ad55a1752c504f29b0d950a0562dc62ca3  /tmp/platform-overlay.tar.gz" | sha256sum --check
 
