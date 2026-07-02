@@ -39,9 +39,9 @@
     return nativeFetch(input, init);
   };
 
-  const module = document.createElement('script');
-  module.type = 'module';
-  module.src = '/ui/app.js?v=37';
-  module.addEventListener('error', () => showError('The main frontend file could not be loaded. Reload once after the latest Render deployment finishes.'));
-  document.head.appendChild(module);
+  const script = document.createElement('script');
+  script.src = '/ui/app.bundle.js?v=1';
+  script.defer = true;
+  script.addEventListener('error', () => showError('The bundled frontend could not be loaded. Make sure the latest Render deployment has finished.'));
+  document.head.appendChild(script);
 })();
