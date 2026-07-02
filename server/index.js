@@ -83,6 +83,16 @@ ${core.profile_image ? `<meta property="og:image" content="${esc('/' + core.prof
   });
 
   // ── Static site (existing frontend, preserved) ──────────────────────────
+  // Serve frontend assets explicitly so Render always returns module files with
+  // the correct JavaScript content type instead of a generic fallback response.
+  app.use('/ui', express.static(path.join(ROOT, 'ui'), {
+    index: false,
+    setHeaders(res, filePath) {
+      if (filePath.endsWith('.js')) res.type('application/javascript');
+      res.setHeader('Cache-Control', 'no-cache');
+    },
+  }));
+
   // never serve server code, runtime state, node_modules or env files
   app.use(['/server', '/var', '/node_modules', '/.env', '/.git', '/package.json', '/package-lock.json'],
     (_req, res) => res.status(404).json({ error: 'Not found.' }));
