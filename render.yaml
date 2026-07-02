@@ -1,5 +1,6 @@
-# One-click deploy on Render (free tier works for testing).
-# In the Render dashboard: New + → Blueprint → point it at your repo.
+# One-click deploy on Render's free tier for testing.
+# Free web services do not support persistent disks, so the SQLite database
+# and uploaded files may reset when the service restarts or redeploys.
 services:
   - type: web
     name: core-platform
@@ -9,14 +10,10 @@ services:
       - key: ADMIN_EMAIL
         value: admin@example.com
       - key: ADMIN_PASSWORD
-        generateValue: true      # Render generates one; read it in the dashboard
+        generateValue: true
       - key: ADMIN_USERNAME
         value: core_admin
       - key: WALLET_MASTER_KEY
         generateValue: true
       - key: APP_URL
-        sync: false              # set to your onrender.com URL after first deploy
-    disk:                        # persists the SQLite DB + uploads across deploys
-      name: core-var
-      mountPath: /app/var
-      sizeGB: 1
+        sync: false
