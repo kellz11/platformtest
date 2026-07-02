@@ -1,0 +1,22 @@
+# One-click deploy on Render (free tier works for testing).
+# In the Render dashboard: New + → Blueprint → point it at your repo.
+services:
+  - type: web
+    name: core-platform
+    runtime: docker
+    plan: free
+    envVars:
+      - key: ADMIN_EMAIL
+        value: admin@example.com
+      - key: ADMIN_PASSWORD
+        generateValue: true      # Render generates one; read it in the dashboard
+      - key: ADMIN_USERNAME
+        value: core_admin
+      - key: WALLET_MASTER_KEY
+        generateValue: true
+      - key: APP_URL
+        sync: false              # set to your onrender.com URL after first deploy
+    disk:                        # persists the SQLite DB + uploads across deploys
+      name: core-var
+      mountPath: /app/var
+      sizeGB: 1

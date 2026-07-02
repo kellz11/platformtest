@@ -1,0 +1,114 @@
+{
+  "line_count": 1989,
+  "manifest_sha256": "b93ddc385c96054b0220708f311196c02967896d4990e521e2b2c6b69067011b",
+  "groups": {
+    ".claude": {
+      "count": 1,
+      "sha256": "8228dff4f904f2d3249a806a69ee98b5f2125b7f2684235789e60e40d1a5cdbe"
+    },
+    ".nojekyll": {
+      "count": 1,
+      "sha256": "530889fd7549f94a7e7543d85fe58fc2a2c7fa874741cf6441b66e7da95336a4"
+    },
+    "README.md": {
+      "count": 1,
+      "sha256": "1c6bb92134796e82a0d143af8b755a92d1848e7d76fb23b9b725d0341dbac157"
+    },
+    "app.js": {
+      "count": 1,
+      "sha256": "d89b215bab5dc2751d91f6c1ad88ed58112c6c487cba0a6a6857c5ca6906fbe4"
+    },
+    "assets": {
+      "count": 1933,
+      "sha256": "e17895e9262e73ded30d2647ae456655087050562a7fafa6159c2f8bbedcec3b"
+    },
+    "bubble-map.html": {
+      "count": 1,
+      "sha256": "813923dd840b14fd04ca8d4245ddf15d5ea95b46b8c347408945cfe2bf1e7a77"
+    },
+    "core-cleanup.css": {
+      "count": 1,
+      "sha256": "8041c917fc6162ba2e8a0b0598792c5c3b66e6f5d107c63bc0a914b31fc1eb97"
+    },
+    "core-cleanup.js": {
+      "count": 1,
+      "sha256": "ff651e957b369e4ebc527e3497fd4c1d7cf9149d2f25559929aa7ff12765a888"
+    },
+    "core-page.js": {
+      "count": 1,
+      "sha256": "47d777f3611d73d9470c035645f06686e0c89d57ecb760bcdeee55e7457f75ba"
+    },
+    "core-search-mode.js": {
+      "count": 1,
+      "sha256": "b65903b6fd61abdd2c0f4eb786f1c9d5aaa251dd4b0dd92febac603ee526bb19"
+    },
+    "core-wiki-main.css": {
+      "count": 1,
+      "sha256": "be1ae64466f1e413bced8849ebdd3eafeb8d71c99f5114feb0faee5362b2d03e"
+    },
+    "core-wiki-main.js": {
+      "count": 1,
+      "sha256": "03c34b6324a462a82d6921d566d9a4f66efd3afaedfe368fe389f9613e64bb01"
+    },
+    "core.html": {
+      "count": 1,
+      "sha256": "319ffba9d29a7400d3edbf23a8a569fe92f395c38c83906c4182af0d807bbb70"
+    },
+    "data": {
+      "count": 7,
+      "sha256": "77a0be882b1e74db8fced032ec10d945e2b87f3078eac0d73028684c8e0d2e29"
+    },
+    "fandom-core-view.css": {
+      "count": 1,
+      "sha256": "324f6eacd6905b658ac4f60e1df982ab505c966b625319e80a7384e06250a1f3"
+    },
+    "fandom-core-view.js": {
+      "count": 1,
+      "sha256": "8557c032dcfa70e95b54fa9ef6d4e0ee5b37f9e0b2d7056219bea041b0b8acfa"
+    },
+    "fandom-gallery.js": {
+      "count": 1,
+      "sha256": "9df129bb5456455a82c41290c3cabcc447484b727805dc7b06e0aa0b93bcd7a0"
+    },
+    "index.html": {
+      "count": 1,
+      "sha256": "7f74b3aa1d5ce043f0cc14bf63b786fc19a106d4c94c0ca1e6eb80e86f2e070c"
+    },
+    "indexer": {
+      "count": 4,
+      "sha256": "c62789f21c6e3f22eff01df1650ff52150b76c6892547d677484be0c8ba44f37"
+    },
+    "local-core-galleries.js": {
+      "count": 1,
+      "sha256": "77f2f256eaf7551318b6d8606c8318df71158d06045551eeab1d2b90c6121307"
+    },
+    "local-gallery-fixes.css": {
+      "count": 1,
+      "sha256": "ffcd5bd39dcc5816c4cd16e9dda801c5ebfb2c86552ebce51592bd1b7e318cb0"
+    },
+    "scripts": {
+      "count": 1,
+      "sha256": "5d84c8316a76083a8708d2d221ec2cf3731bced8c5f90f1f260df2a3423bc6f3"
+    },
+    "styles.css": {
+      "count": 1,
+      "sha256": "f862b600d09fa0b64be957bf3c5f427aa163f32ffe2117263bc7059183dc49da"
+    },
+    "taxonomy.js": {
+      "count": 1,
+      "sha256": "129d1185be0cfdea338ed66ff84e5d23e9e6d3c25cddc838882aa76dbe3bc7fd"
+    },
+    "tools": {
+      "count": 1,
+      "sha256": "28816bdbcaebaa370312c07bc45901a28642d885e9c8966e4a0c46ff9dbc2fa0"
+    },
+    "ui": {
+      "count": 22,
+      "sha256": "c19699c72c9ff483ef7d0dd9c7178e4f3794a9b58d77eeadcd2964b0349545fc"
+    },
+    "wiki.css": {
+      "count": 1,
+      "sha256": "aa1339db06e1bb7e4f8864fe973a841a5d4f5cdb900c5cb8cdd045f0e1676b47"
+    }
+  }
+}

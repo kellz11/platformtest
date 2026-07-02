@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(where python *)",
+      "Bash(where python3 *)",
+      "Bash(npx --version)",
+      "PowerShell(node --version)",
+      "PowerShell(npx --version)",
+      "PowerShell(php --version 2>$null)",
+      "PowerShell(ruby --version 2>$null)",
+      "PowerShell(go version 2>$null)",
+      "PowerShell(python3 --version 2>$null)",
+      "Bash(ls \"C:\\\\Users\\\\sined\\\\.claude\" 2>/dev/null || echo \"empty\")"
+    ]
+  }
+}

@@ -1,0 +1,484 @@
+{
+  "asset_groups": {
+    "assets/cores/Adventurecore": {
+      "count": 15,
+      "sha256": "2dfbcd1d1a9fcb4afcb482c9230ffe5703299020a4d70c8e391a13011a66f61c"
+    },
+    "assets/cores/Aliencore": {
+      "count": 18,
+      "sha256": "8e275e01635cf5a42ccbe2d14b10f10f9405a129cf280ea212d3a92ba1074355"
+    },
+    "assets/cores/Aliyahcore": {
+      "count": 10,
+      "sha256": "62ef23d739955a45a873c258cc88e3625c3e897a5bdc21104bd78d4ebec05591"
+    },
+    "assets/cores/Angelcore": {
+      "count": 24,
+      "sha256": "30cbd8362ad029ddb75f9374533f74889734e9bdd104bef65d97686d0b98daba"
+    },
+    "assets/cores/Animecore": {
+      "count": 65,
+      "sha256": "2bad5377140e061000b7dcc8de24ba9a2e4bb1b833a42e7f0e86f53b9cd7296e"
+    },
+    "assets/cores/Arcadecore": {
+      "count": 14,
+      "sha256": "058f5107de4c97874ed60adb2afbbc01c65d3374915204cf4ccb27ee552b598c"
+    },
+    "assets/cores/Artcore": {
+      "count": 18,
+      "sha256": "c81079012a661c87428d94e798ae9de60896f12878402e192e428ee9443ac706"
+    },
+    "assets/cores/Auroracore": {
+      "count": 9,
+      "sha256": "00a95ab627ba89c97c6780ac2e3d86ada24399fdf12a59c5b117746f4d569c89"
+    },
+    "assets/cores/Babycore": {
+      "count": 14,
+      "sha256": "3ecabd5223707928fc232e2978ab9e3dce047e65815f0c750c91834db1d4caaa"
+    },
+    "assets/cores/Balletcore": {
+      "count": 17,
+      "sha256": "31cb4467ef38b5b77f5d77fc1ed7777ded783c8981dec65909de04295203acdc"
+    },
+    "assets/cores/Barbiecore": {
+      "count": 19,
+      "sha256": "8c97d183707017123f5246202fc2087528bfff6f9f50ca2b13e4531dfd189f81"
+    },
+    "assets/cores/Bardcore": {
+      "count": 21,
+      "sha256": "db484b89f0b6a3126625cda2f59bbbcff274e28b8b3dd9f65c0ffd03a3ce04ee"
+    },
+    "assets/cores/Bastardcore": {
+      "count": 7,
+      "sha256": "83772e0cdc89dca3980bda985bb16fa5e89d92b38a7cc4a8aae2f722bf9fb43b"
+    },
+    "assets/cores/Bimbocore": {
+      "count": 22,
+      "sha256": "f944b8e3aea96b05849bf180c5be1a331d49f97ace1734d6dbc6e1732409048d"
+    },
+    "assets/cores/Blokecore": {
+      "count": 13,
+      "sha256": "4d32adb4f0c95cf6e559d170874e0d183c5d267982ff8d459d5123a11ad1ef1e"
+    },
+    "assets/cores/Bloomcore": {
+      "count": 16,
+      "sha256": "a05bfcfa1cfbde8e5a463962cac443ec01ba8ceae8be4226a989c5c90b01261c"
+    },
+    "assets/cores/Brazilcore (fashion trend)": {
+      "count": 19,
+      "sha256": "92daac23f5a96c4fac00843099a735a183853113399d88cb63be1021f4f042d3"
+    },
+    "assets/cores/Cabincore": {
+      "count": 12,
+      "sha256": "db209843acfebecf985c8f803f25c53d296dee3b840334f0b05466ad5175466e"
+    },
+    "assets/cores/Campcore": {
+      "count": 8,
+      "sha256": "3345324ef4b3bd69a9dc7f780971ef88f50c58bd9c205134b4a5edbcfcfe053c"
+    },
+    "assets/cores/Candycore": {
+      "count": 14,
+      "sha256": "b7b769d173c9f3350f3cd1c9472df5dc2e0420c33b73c98e0381628f17fb7fba"
+    },
+    "assets/cores/Changelingcore": {
+      "count": 18,
+      "sha256": "d3690728b9c861dd90ccf8543c67dc14bc1c87b4755424e76c9e9f7b22e23d2f"
+    },
+    "assets/cores/Chinese Dreamcore": {
+      "count": 11,
+      "sha256": "8d489e4598f759b3ef60446d3b9becceb6074cb350413046a752deb43690e57d"
+    },
+    "assets/cores/Chromecore": {
+      "count": 30,
+      "sha256": "3aeb290619566f8e03a1c4df840884fab7ef9c7501f9b722f97cfa81196fba2e"
+    },
+    "assets/cores/Cleancore": {
+      "count": 20,
+      "sha256": "f29a49b6bfe037375e080cb933ae8f0401bffa4875cdfea2401b189231ef2839"
+    },
+    "assets/cores/Cloudcore": {
+      "count": 17,
+      "sha256": "00f7d0ded7eae245dd138e01db7e639ea3f5185dc4f8d0a0c42abc803e538502"
+    },
+    "assets/cores/Clovercore": {
+      "count": 15,
+      "sha256": "60634933849c97fe0c53aeae6745dec1b3ffb6ba8f29e616f5b62c99027d76e1"
+    },
+    "assets/cores/Clowncore": {
+      "count": 9,
+      "sha256": "4e6cf08e7a28dd219465130367daabd6ebc5a59caef96fa4f95bbdd29ce0ac11"
+    },
+    "assets/cores/Cluttercore": {
+      "count": 16,
+      "sha256": "6385f2417f15d16ab9a39fd4bedb28371be1446ecd53727be2d08946dc98e6b7"
+    },
+    "assets/cores/Cottagecore": {
+      "count": 3,
+      "sha256": "4fb633d2d626d7633728d8df4ef478507b6ca1bf2eb9bba3ed657e959dd8b8b1"
+    },
+    "assets/cores/Craftcore": {
+      "count": 10,
+      "sha256": "c55b9011f71eb5f881dea822b14fdd33777e1f4b635e284e50061cfc225b5f34"
+    },
+    "assets/cores/Crowcore": {
+      "count": 18,
+      "sha256": "1455ad564f4bb0d474113ee8673efd223eb8f298d4cf096b87af828521603b29"
+    },
+    "assets/cores/Cryptidcore": {
+      "count": 12,
+      "sha256": "a600204e45b104fc28ff4c8a5d9c3533ab2308ae203792f21cfc85c9f9cab9b3"
+    },
+    "assets/cores/Cutecore": {
+      "count": 14,
+      "sha256": "7ea5ed22170b8e0389f2bf03f16a5fda2464a50932206a9e04724c7cf42a5aba"
+    },
+    "assets/cores/Cybercore": {
+      "count": 10,
+      "sha256": "69484d3c056aa62ecaa2f9582df432d2e556779427a9f9dddeed9015270dc45c"
+    },
+    "assets/cores/Dadcore": {
+      "count": 36,
+      "sha256": "d750532f4eb8ee066cbcb6e9f296e02f7cbfdb0fff23c3f6e7d04e178574e07a"
+    },
+    "assets/cores/Dark Nautical": {
+      "count": 14,
+      "sha256": "2440f3104301d6565890802a9c2b7370edcac342cc0cad3c416f104e71cacc9b"
+    },
+    "assets/cores/Devilcore": {
+      "count": 22,
+      "sha256": "ad4bb45872e8bea05eba8357d2c247ce3789f27d914fcff4a59bf082b54632b9"
+    },
+    "assets/cores/Dollcore": {
+      "count": 13,
+      "sha256": "e899027b2d5afe0bee810e6a6a54e428dfcff4194ee46f870fc3881fb72be36b"
+    },
+    "assets/cores/Dragoncore": {
+      "count": 15,
+      "sha256": "a8963ffb0449e5acbdadf68fdd8a3fa802a8c9d33626a66cae9c7e415a02f376"
+    },
+    "assets/cores/Dreamcore": {
+      "count": 39,
+      "sha256": "24b99bf891acbdacd49c618b3905ef203df23296b8144f9756a932974083594a"
+    },
+    "assets/cores/Fairycore": {
+      "count": 21,
+      "sha256": "336cd667897d3b4d0e1a49e0b97c6338075a515753fdbdb8f95c98a56dcf6bdd"
+    },
+    "assets/cores/Fallen Angel": {
+      "count": 16,
+      "sha256": "89c1875dcf314b93e66fe77d023c9d18cb43899923349b7ddd54134a59a330c4"
+    },
+    "assets/cores/Fashioncore": {
+      "count": 21,
+      "sha256": "f23caaae63b1156fe29a48e61cab018a5507d4486d68eccade30444192da48b7"
+    },
+    "assets/cores/Frogcore": {
+      "count": 13,
+      "sha256": "7c2b28b0d91290f5f4638ab8adc43edff8b74290ce3de94253aa4f50dc37c26a"
+    },
+    "assets/cores/Gardencore": {
+      "count": 14,
+      "sha256": "262b96e93cdd61cbacfac632494bcdf740577d60258feff9211b2175e5037514"
+    },
+    "assets/cores/Ghostcore": {
+      "count": 12,
+      "sha256": "e0c7721705886ab5fd40f88a6ed9dad6f534dd7df5a49f06bbe018fbb6b79c5f"
+    },
+    "assets/cores/Glitchcore": {
+      "count": 14,
+      "sha256": "86935a9100154f9815e2866d787ee9dc96310151cc818cc632096cdfe2739dbd"
+    },
+    "assets/cores/Gloomcore": {
+      "count": 12,
+      "sha256": "de5f45bf95a6c06c71af1b3bb25a81feb30f91e1d9767ac50cc8afbfd3be163d"
+    },
+    "assets/cores/Goblincore": {
+      "count": 11,
+      "sha256": "227d02fdc7e06cc7dd2cd2765ccce3aab4fc8d44407a124c285811b6bc3c6289"
+    },
+    "assets/cores/Goddesscore": {
+      "count": 14,
+      "sha256": "51e3197c275bfe5d29bd787f8a6f4a5dd653fb12ae7d076025d32f85bbf2d519"
+    },
+    "assets/cores/Gorecore": {
+      "count": 8,
+      "sha256": "fba8b5bc91d44042c2276e20cdd7adbecd0d2e19d77893ff6bbc50885e2d2954"
+    },
+    "assets/cores/Gorpcore": {
+      "count": 8,
+      "sha256": "b0edbfa9d5166df8541a714056eab4778df027a51ef3e1bca7668e44497ea4ef"
+    },
+    "assets/cores/Grandmacore": {
+      "count": 13,
+      "sha256": "4642cd0aac873523d2ba2dca56b77f5a786200fd7d82c549ef8920a589bce3c9"
+    },
+    "assets/cores/Gra\u017cynacore": {
+      "count": 6,
+      "sha256": "76d56694f524803563ede132d73e270346eee1bf662f22707fbcceed36138047"
+    },
+    "assets/cores/Heistcore": {
+      "count": 14,
+      "sha256": "d7519d5d1675c3e40de3c3a1d44944a6ae19297a83cd7d2dae57d7571d154913"
+    },
+    "assets/cores/Honeycore": {
+      "count": 8,
+      "sha256": "802b284114402308b64941b0f072612e6a6efcd687b0c5bde1232fdff4c61ee1"
+    },
+    "assets/cores/Hopecore": {
+      "count": 20,
+      "sha256": "bcb87bae513cee514946916bf19c40eb5ecc9683da29adfd06332f955733ef45"
+    },
+    "assets/cores/Horrorcore": {
+      "count": 11,
+      "sha256": "840bd00a039c75a92dd6eac625f3678978cb605d9b59d21ebfa8d7e4f80eb936"
+    },
+    "assets/cores/Juminocore": {
+      "count": 10,
+      "sha256": "bdf450032b531feb02654ed22609e68c4b13b38b1acf58c6f41866b06a084bfb"
+    },
+    "assets/cores/Junglecore": {
+      "count": 14,
+      "sha256": "32334d42c57daab0ab127c71355721176ad6d17f00204f46ac177845bdf4494e"
+    },
+    "assets/cores/Kidcore": {
+      "count": 12,
+      "sha256": "0c3d02963bf1dc8bd7c692a61a3ec0c320addd2a78c85149d3f4bc73ed0e0176"
+    },
+    "assets/cores/Kingcore": {
+      "count": 9,
+      "sha256": "05fbbb856421485f0f3e32dbe71049af612d6ace35646f966bc6c6c26ce14386"
+    },
+    "assets/cores/Knightcore": {
+      "count": 15,
+      "sha256": "1361a6b7e9a13d142db0f7215fce641b69e38e3fb50c104cb890f5a480ae0031"
+    },
+    "assets/cores/Kuromicore": {
+      "count": 8,
+      "sha256": "e37356437e23f67c631242f85c6a25b55944354e9913a4fd655ab42e45f16802"
+    },
+    "assets/cores/LOLcore": {
+      "count": 16,
+      "sha256": "6064ce979dc68ac4765afc6c390914df597364cedf98d60761391ed988936344"
+    },
+    "assets/cores/Lolicore": {
+      "count": 17,
+      "sha256": "8117c82a263d332c0b4ac310e81cdfa5eeea8a75b4b417810f6fb9b7658e362c"
+    },
+    "assets/cores/Lovecore": {
+      "count": 15,
+      "sha256": "8913ab4f91b41acd87c461542e707bd00591dea1f72ec78394440bdaa440cd62"
+    },
+    "assets/cores/Lulicore": {
+      "count": 14,
+      "sha256": "c9446bcf7f29da00e4887440e6f7328bb64262e326f0e23cecb4ce51c3997f2a"
+    },
+    "assets/cores/Maidcore": {
+      "count": 13,
+      "sha256": "ca3d5cc065d52c714ff31caa4796db19e5cd41cd613c2b62fb90cea373c3fb71"
+    },
+    "assets/cores/Meatcore": {
+      "count": 15,
+      "sha256": "3febfd89c6ce5b62ab71494c6475d518015f2dd60cda683383a781a5e07bf5ed"
+    },
+    "assets/cores/Medicalcore": {
+      "count": 12,
+      "sha256": "a4755c7575fe2b63a21e9379a3d67107fee6dd27c6eb5e1d55cfd6c6f16fcd7c"
+    },
+    "assets/cores/Melodycore": {
+      "count": 15,
+      "sha256": "559fd70c12a381445536ed8af7405d2e421c6817fb8dac1961e350b10e97494f"
+    },
+    "assets/cores/Mushroomcore": {
+      "count": 11,
+      "sha256": "4ac5a72471a600ca0592c7e8f434690e10040d754cd6fd949dd3824a9b54d4c2"
+    },
+    "assets/cores/Naarmcore": {
+      "count": 12,
+      "sha256": "3073aac5d2af59cabf57051185d14394e582e68fa49a2dd11fac967e4adde2ce"
+    },
+    "assets/cores/Naturecore": {
+      "count": 21,
+      "sha256": "c1ab5bf520056f74564c301511f804337dd3db93e307d8915456b0daac99f9c5"
+    },
+    "assets/cores/Nerdcore": {
+      "count": 12,
+      "sha256": "8f5c5b448cac8df2b8237e00d22a6c70cefcc441f5c65bda24fc40fba6d8bf43"
+    },
+    "assets/cores/Normcore": {
+      "count": 18,
+      "sha256": "0d7d8707c662d368ce521670afd5ad2f63de51287c973bb2949820c2d7973482"
+    },
+    "assets/cores/Nostalgiacore": {
+      "count": 28,
+      "sha256": "15fd287bed03f3701c283ac91258fc9e3ba64cc3da91e8f604e4f1ddfcec4240"
+    },
+    "assets/cores/Paleocore": {
+      "count": 14,
+      "sha256": "3fa2b8a5e1f69594ca0cdbfbc792fcdf551342d4d8491c178f1f0142dd54487f"
+    },
+    "assets/cores/Pearlcore": {
+      "count": 23,
+      "sha256": "c64afafd34c8d018960e0f4a8ff249d95fd5c792efdc7c6f3a0c314dd002536e"
+    },
+    "assets/cores/Pianocore": {
+      "count": 21,
+      "sha256": "c77c1a3b43bf5e81b10afb8a5affe0dd938d8729c346261f09eb7d96a1ecebc3"
+    },
+    "assets/cores/Picniccore": {
+      "count": 16,
+      "sha256": "9289c25c203b7004c372ed26b1aa55a2f09c540fe19f71ef69ac666eb1b3b55b"
+    },
+    "assets/cores/Plaguecore": {
+      "count": 11,
+      "sha256": "493cf3c5e55fd58aabddab792fcb64af83b3cfc654a259ab379ad29da4299eae"
+    },
+    "assets/cores/Plazacore": {
+      "count": 15,
+      "sha256": "a3ccee912ad3848fe3006ec876b533c26c97ca02b5bc45875ced5cdee0873572"
+    },
+    "assets/cores/Poolcore": {
+      "count": 19,
+      "sha256": "34bcc981fbdf51040a23068c1e8fcfcf5e533393de1afcda6487ede11efac70c"
+    },
+    "assets/cores/Pridecore": {
+      "count": 10,
+      "sha256": "37bbb5978c774ffdf8fa50439dde60dfd38d8bd46d275fde7c9469ad77dfa3ce"
+    },
+    "assets/cores/Princecore": {
+      "count": 13,
+      "sha256": "331427fe86dd127624a148305d22b5aa274ce32468ce8e81fc3f3e7ecb953846"
+    },
+    "assets/cores/Princesscore": {
+      "count": 15,
+      "sha256": "fe8040f4d77649d528fb4846e5828d56f2c23c406ca4c9c2b9cf0c47086a0c59"
+    },
+    "assets/cores/Puppycore": {
+      "count": 21,
+      "sha256": "26896de141599d9bdec70269dcb29e6c3538b4b769abdf61e8c76ce0b7cbca1e"
+    },
+    "assets/cores/Queencore": {
+      "count": 13,
+      "sha256": "5ac618709b5e33bb8eb073be0e023486fa6bfade36c754045141d0a6a9712cb7"
+    },
+    "assets/cores/Queercore": {
+      "count": 9,
+      "sha256": "9e0560a851ad1cc1dfc03bd4635f72de2ad3d1c03b603ddb8da39bd9e7826057"
+    },
+    "assets/cores/Retro Gamer": {
+      "count": 19,
+      "sha256": "019f1f098a51bc39d32b5e75b97ae4ae256e8ad601bbfaec971ee0d2a4d6d4b0"
+    },
+    "assets/cores/Robotcore": {
+      "count": 24,
+      "sha256": "7ebb5e29359328eaf19208701cd781d8282b3e238e4d2dd18e26d33b154a98ae"
+    },
+    "assets/cores/Royalcore": {
+      "count": 27,
+      "sha256": "2d943d061bdeeabcef87c36562b69d68e3d8ccf3c494e7cce545d8ef3f74dc33"
+    },
+    "assets/cores/Sanriocore": {
+      "count": 29,
+      "sha256": "b8a9cd376c0b1a142ae6ac510586a04576b975c30c2326fdd448add52486c231"
+    },
+    "assets/cores/Scenecore": {
+      "count": 23,
+      "sha256": "e7238a95adb351fd5c425709ff661d1610efd7ffc436d0fb3b118b7e6bf31fce"
+    },
+    "assets/cores/Soft Apocalypse": {
+      "count": 17,
+      "sha256": "6c5ed88378ae43d6a7e9b68a53225c32323fc93e2d0976ab631800635e5029dd"
+    },
+    "assets/cores/Spacecore": {
+      "count": 45,
+      "sha256": "0c9df1a5cf010dc17dddbe8511b073ab28f3246eb7bb8c8fb49e235e6b5d46c3"
+    },
+    "assets/cores/Taqwacore": {
+      "count": 16,
+      "sha256": "0c41dc399746b868ddc8ca2653d590dffada95488b763d0b480532665a8519a0"
+    },
+    "assets/cores/Teethcore": {
+      "count": 13,
+      "sha256": "f17c6b0e96e8de1852571f0c14c474cc7f49bc5d03178e65c411b9b11eeff242"
+    },
+    "assets/cores/Tenniscore": {
+      "count": 31,
+      "sha256": "170439c51b21004f85b09e5d5bc3b8cb05c2576c259f2efa068d340d9588c301"
+    },
+    "assets/cores/Traumacore": {
+      "count": 24,
+      "sha256": "31111d4e1ff5e40999a40875b54e5b5f33f8809c201032277f73cd95fbd4e765"
+    },
+    "assets/cores/Trinketcore": {
+      "count": 17,
+      "sha256": "5f45894ac81d40955c90f1d4b3e4451cfb59778ee0f35b9871700d6272ca1206"
+    },
+    "assets/cores/Tropicalcore": {
+      "count": 26,
+      "sha256": "c1c017f492083ca42c6acbce0972cb0dc6d6fb9e7a00cb52e740ff97120493e4"
+    },
+    "assets/cores/Tweencore": {
+      "count": 17,
+      "sha256": "593f7394dff70050f29e92570a24dc97b913a11fb50ac04df93027ac0819eca1"
+    },
+    "assets/cores/Urbancore": {
+      "count": 16,
+      "sha256": "4f4191f7e752fe86346ca1f7b61875927588f63d61359358f9c166690bf7e20c"
+    },
+    "assets/cores/Vacation Dadcore": {
+      "count": 20,
+      "sha256": "f66fd42ab4504cfe9213937db6e2dd99bc6bbe1e75f11913b09e7d6b8c9266a2"
+    },
+    "assets/cores/Warcore": {
+      "count": 32,
+      "sha256": "849cdd4ce6ed38f1d81a45dbb0a8ae542d501715479988405b07775098c93730"
+    },
+    "assets/cores/Webcore": {
+      "count": 21,
+      "sha256": "364f724786285fc78650367726d0c3f16900c7044044e04da999aca9cf8ce4ca"
+    },
+    "assets/cores/Weirdcore": {
+      "count": 30,
+      "sha256": "df1846910798d6d508e38f1231322fd5ab9db668d8e92746570a8edea95ecbfd"
+    },
+    "assets/cores/Wishcore": {
+      "count": 21,
+      "sha256": "932361b1ffd67d6c84947bd9ca52af396f2bba8aba2ac64128ab27f7bc2dc3b6"
+    },
+    "assets/cores/Witchcore": {
+      "count": 17,
+      "sha256": "08becf721ed305e3cec195ece79dc93b853d4cb46301c34201122f829a516f5c"
+    },
+    "assets/cores/Wizardcore": {
+      "count": 27,
+      "sha256": "446c4b2f560c4eec80019a930f295759f09da4f860469cc55b4b452bf04d9491"
+    },
+    "assets/cores/manifest.json": {
+      "count": 1,
+      "sha256": "cdfcc4aa1ecf1898eb2b2979bb12ca9503f841c966347ea58169f2520c52f1f0"
+    }
+  },
+  "ui": [
+    "654772c7257ffda44db970487c19e9a838f3a46dd11bbde9673381d56cf9d863  ui/app.js",
+    "5e41a737d58161126184f5b1b913f426612d3fc402e24e137f83db5da73083d0  ui/article.js",
+    "70418a575cd40ff1f3acc81ab89930a414a5b0c4b6a7e9ce8fb553ab8ce7c053  ui/base.css",
+    "3ac711cdf65196c26a0bf618fe42a6837a535d64c8069e5de8862da0f4f10548  ui/core-data.js",
+    "5ace3b25b3bf71d0612383f741e956e42f57d7acd0733f465de9b35da51289fb  ui/graph-data.js",
+    "75f383b89f477e61e84717b4aa4c78667adf336702c1fbb55c09e58ef4698e76  ui/graph-fix.css",
+    "65e4c84cb0d736ff0f5334c93149533b4298f945618126a99802d8e9e8b728dd  ui/graph-nav.js",
+    "e0057ad532cf4b4a9a70d1f62a9baa30220e873d1cd291d76eec9508870e2603  ui/graph-v2.js",
+    "bc0cb392ff15374f91688a7605ed6420c9fa92b18856dc2831a1ae09d244758a  ui/graph-v3.js",
+    "5f7125958c84ce7bd2312850da7a5726e98b372f6d5318703bee782422116190  ui/graph-v4.js",
+    "df444050b91484ee24f311552ff76c6e5d6095e1d95bf41d20a8d642b92b0a7b  ui/graph-v5.js",
+    "0591facb450e6fdc4bd69ab8c0e5bf0245ffc3a44ce612c53aaefd2569772c5a  ui/graph.css",
+    "f735229a8d28b73ade677eecbd99f953b52488eafe197bfc1824ac6da126b97f  ui/graph.js",
+    "3f6166ebd0a50d6b61512fcd30d088861d4111e0c4dd2071d380e724608f94eb  ui/layout.css",
+    "2b5f902fe6df874face7e7ada30d9c767a8b851583dba88ab1d83d217b7116eb  ui/pages.css",
+    "6d808682ed27d5f9e2b99dac2fa990d33c434e5c98f3c0167afeb78cfcd858f2  ui/quiz.css",
+    "f859cb5388b277454fb23811610eb8ed984c725dc40d41bbf92723dbca23202e  ui/quiz.js",
+    "b37bc99758e5abdfc7da42623f291fb8e316bf319dd3b8c85468a09aa7c4836d  ui/sections.css",
+    "a11c98d884776d8a917270348ff09d30565ad749afa991c83e9fdf74a7eaa032  ui/sections.js",
+    "8b7b3b562447b5a785d7cd3f9da49eb1e748f21c9684d13214b1d0fe4329ea18  ui/shell.js",
+    "faf3a3870aa416f1463784ea29d96a3fdc23ec867667ebb91e109bc1ea327f90  ui/theme.css",
+    "0d98f87a6bad17221ddebc95c4037651e476ee4306ee716ecf098406f707519b  ui/views.js"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "core-search-main",
+  "version": "1.0.0",
+  "description": "A static, searchable visual index of internet culture.",
+  "main": "app.js",
+  "scripts": {
+    "test": "node --test server/test/*.test.js",
+    "start": "node server/index.js",
+    "seed": "node server/seed.js",
+    "dev": "node --watch server/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "multer": "^2.2.0",
+    "qrcode": "^1.5.4"
+  },
+  "type": "module"
+}

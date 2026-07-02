@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="A data-derived similarity map of every aesthetic formation in the CORE index.">
+<title>CORE — Pattern Map</title>
+<style>
+:root{
+  --bg:#07080b;--panel:#0d0f14;--panel2:#12151c;--line:#232832;--text:#f3f5f8;
+  --muted:#9299a7;--faint:#626a79;--accent:#8fb5ff;--danger:#ff8c9c
+}
+*{box-sizing:border-box}
+html,body{width:100%;height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select{font:inherit}
+.app{height:100%;display:grid;grid-template-rows:auto 1fr}
+.topbar{position:relative;z-index:10;display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(7,8,11,.94);backdrop-filter:blur(14px)}
+.identity{min-width:280px}.identity .kicker{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#6e7685}.identity h1{font-size:17px;line-height:1.2;margin:3px 0 0;font-weight:680}.identity p{margin:4px 0 0;color:var(--muted);font-size:10px;max-width:480px}
+.search{position:relative;flex:1;max-width:380px}.search:before{content:'⌕';position:absolute;left:13px;top:6px;color:#7f8795;font-size:19px}.search input{width:100%;height:38px;padding:0 15px 0 38px;border:1px solid #292e38;border-radius:999px;background:#12151b;color:#fff;outline:none}.search input:focus{border-color:#5f78a9}
+.controls{display:flex;align-items:center;gap:8px;margin-left:auto}.control{height:36px;border:1px solid #292e38;border-radius:8px;background:#11141a;color:#c5cad3;padding:0 10px;font-size:10px}.control:hover{border-color:#424a58}.control.active{background:#e9edf5;color:#090b0f;border-color:#e9edf5}.select{height:36px;border:1px solid #292e38;border-radius:8px;background:#11141a;color:#c5cad3;padding:0 28px 0 10px;font-size:10px}.stats{display:flex;gap:12px;padding-left:4px}.stats span{font-size:9px;color:#79818e;white-space:nowrap}.stats b{display:block;font-size:14px;color:#f4f5f7;font-weight:650}
+.workspace{display:grid;grid-template-columns:minmax(0,1fr) 340px;min-height:0}.stage{position:relative;overflow:hidden;background:radial-gradient(circle at 50% 50%,#10131a 0,#090b0f 44%,#07080b 78%)}canvas{width:100%;height:100%;display:block;touch-action:none}
+.side{min-width:0;border-left:1px solid var(--line);background:#0b0d11;overflow:auto}.side-inner{padding:18px}.empty{height:100%;min-height:400px;display:grid;place-items:center;text-align:center;color:#6d7481}.empty .mark{font-size:34px;color:#65708a}.empty h3{font-size:14px;color:#a4aab5;margin:10px 0 4px}.empty p{font-size:11px;line-height:1.6;margin:0}
+.loader{position:absolute;inset:0;z-index:8;display:grid;place-items:center;background:rgba(7,8,11,.91);transition:opacity .3s}.loader.hidden{opacity:0;pointer-events:none}.loader-card{width:min(420px,calc(100% - 40px));border:1px solid #2a303a;background:#10131a;border-radius:14px;padding:18px}.loader-card .label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#6f7785}.loader-card h2{font-size:17px;margin:6px 0}.loader-card p{font-size:11px;color:#9097a4;line-height:1.55;margin:0 0 12px}.progress{height:4px;background:#242933;border-radius:99px;overflow:hidden}.progress i{display:block;height:100%;width:0;background:#8fb5ff;transition:width .2s}.progress-text{font-size:9px;color:#737b88;margin-top:8px}
+.map-help{position:absolute;left:14px;bottom:13px;z-index:3;padding:8px 10px;border:1px solid #242a33;border-radius:8px;background:rgba(11,13,17,.82);font-size:9px;color:#858c99;pointer-events:none}.threshold{position:absolute;left:14px;top:14px;z-index:3;width:235px;border:1px solid #252b35;border-radius:10px;background:rgba(11,13,17,.87);padding:10px}.threshold label{display:flex;justify-content:space-between;font-size:9px;color:#8b929f;margin-bottom:7px}.threshold b{color:#dce0e7}.threshold input{width:100%;accent-color:#9abaff}.threshold small{display:block;color:#626a77;font-size:8px;line-height:1.4;margin-top:5px}
+.legend{position:absolute;right:14px;top:14px;z-index:3;width:220px;max-height:calc(100% - 28px);overflow:auto;border:1px solid #252b35;border-radius:10px;background:rgba(11,13,17,.87);padding:9px}.legend-head{display:flex;justify-content:space-between;align-items:center;padding:2px 3px 7px;font-size:9px;color:#777f8d;text-transform:uppercase;letter-spacing:.12em}.legend-row{display:flex;align-items:center;gap:7px;padding:5px 3px;border-top:1px solid rgba(255,255,255,.035);font-size:9px;color:#a9afb9}.legend-row i{width:8px;height:8px;border-radius:50%;flex:none}.legend-row span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.legend-row em{margin-left:auto;color:#606875;font-style:normal}
+.tooltip{position:absolute;z-index:6;display:none;max-width:250px;padding:9px 10px;border:1px solid #303643;border-radius:9px;background:rgba(12,14,19,.96);box-shadow:0 10px 34px rgba(0,0,0,.35);pointer-events:none}.tooltip.show{display:block}.tooltip b{display:block;font-size:12px}.tooltip span{display:block;color:#8c94a1;font-size:9px;margin-top:3px}.tooltip p{font-size:9px;color:#b7bdc7;line-height:1.45;margin:7px 0 0}
+.hero-image{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:11px;background:#151820}.region{margin-top:14px;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent)}.detail-title{font-size:24px;line-height:1.15;margin:5px 0 8px}.description{font-size:11px;line-height:1.65;color:#a6adb8;margin:0}.meta{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:14px 0}.meta div{border:1px solid #252a34;border-radius:8px;background:#11141a;padding:9px}.meta dt{font-size:8px;color:#6f7784;text-transform:uppercase;letter-spacing:.11em}.meta dd{font-size:12px;color:#e2e5e9;margin:4px 0 0}.section-title{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#777f8c;margin:18px 0 8px}.quality-list{display:flex;flex-wrap:wrap;gap:5px}.quality-pill{display:inline-flex;align-items:center;gap:5px;padding:5px 7px;border:1px solid #2a303a;border-radius:999px;font-size:9px;color:#bbc0c8}.quality-pill i{width:6px;height:6px;border-radius:50%}
+.axis{display:grid;grid-template-columns:70px 1fr 70px;align-items:center;gap:7px;margin:8px 0}.axis span{font-size:8px;color:#727a87}.axis span:last-child{text-align:right}.axis-track{height:4px;background:#242933;border-radius:99px;position:relative}.axis-track i{position:absolute;top:50%;width:9px;height:9px;border:2px solid #10131a;border-radius:50%;background:#d7dce4;transform:translate(-50%,-50%)}
+.neighbor{width:100%;display:grid;grid-template-columns:34px 1fr auto;gap:9px;align-items:center;padding:7px 0;border:0;border-top:1px solid #20252e;background:none;color:inherit;text-align:left;cursor:pointer}.neighbor img,.neighbor .fallback{width:34px;height:34px;border-radius:50%;object-fit:cover;background:#242933}.neighbor b{display:block;font-size:10px}.neighbor small{display:block;color:#6f7784;font-size:8px;margin-top:2px}.neighbor em{font-size:9px;color:#9ea6b2;font-style:normal}.open-core{display:block;margin-top:16px;border-radius:8px;background:#eef1f6;color:#090b0e;padding:10px;text-align:center;text-decoration:none;font-size:10px;font-weight:700}.method{margin-top:12px;padding:10px;border:1px solid #242a33;border-radius:8px;background:#101319;color:#767e8c;font-size:9px;line-height:1.55}
+@media(max-width:980px){.identity p,.stats{display:none}.identity{min-width:180px}.controls .desktop-only{display:none}.workspace{grid-template-columns:1fr 300px}}
+@media(max-width:760px){.workspace{grid-template-columns:1fr}.side{display:none}.identity{min-width:130px}.identity h1{font-size:14px}.legend{display:none}.threshold{width:200px}.topbar{padding:9px}.search{max-width:none}.controls{display:none}.map-help{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="identity">
+      <div class="kicker">CORE INDEX / EXPERIMENT 01</div>
+      <h1>Aesthetic Pattern Map</h1>
+      <p>Position is calculated from shared language and quality fingerprints. No node is manually placed into a category.</p>
+    </div>
+    <label class="search"><input id="search" type="search" autocomplete="off" placeholder="Search an individual core..."></label>
+    <div class="controls">
+      <select id="colorMode" class="select desktop-only" aria-label="Color nodes by"><option value="region">Color: emergent region</option><option value="quality">Color: dominant quality</option></select>
+      <button id="edgesButton" class="control active desktop-only" type="button">Connections</button>
+      <button id="fitButton" class="control" type="button">Fit map</button>
+    </div>
+    <div class="stats"><span><b id="nodeCount">—</b>individual nodes</span><span><b id="edgeCount">—</b>similarities</span><span><b id="regionCount">—</b>patterns</span></div>
+  </header>
+  <main class="workspace">
+    <section class="stage" id="stage">
+      <canvas id="canvas"></canvas>
+      <div class="threshold">
+        <label><span>Visible relationship strength</span><b id="thresholdLabel">—</b></label>
+        <input id="threshold" type="range" min="0" max="100" value="42">
+        <small>This only hides weaker lines. Node positions still use the complete similarity structure.</small>
+      </div>
+      <div class="legend" id="legend"></div>
+      <div class="tooltip" id="tooltip"></div>
+      <div class="map-help">Drag empty space to move · Scroll to zoom · Click a node to inspect · Double-click to open</div>
+      <div class="loader" id="loader"><div class="loader-card"><div class="label">Building the map</div><h2 id="loaderTitle">Reading the CORE index</h2><p id="loaderCopy">Collecting the current nodes, descriptions, visual evidence, and language attached to each formation.</p><div class="progress"><i id="progressBar"></i></div><div class="progress-text" id="progressText">Starting…</div></div></div>
+    </section>
+    <aside class="side" id="side"><div class="empty"><div><div class="mark">∞</div><h3>Select an individual node</h3><p>Its qualities, semantic position, and closest<br>relationships will appear here.</p></div></div></aside>
+  </main>
+</div>
+<script>
+'use strict';
+
+const ROOT = './';
+const MANIFEST_URL = './assets/cores/manifest.json';
+const WIKI_API = 'https://aesthetics.fandom.com/api.php';
+const STOP = new Set(('a an and are as at be been being but by can could did do does doing for from had has have having he her hers him his how i if in into is it its itself may might more most much must my no nor not of off on once one only or other our ours out over own same she should so some such than that the their theirs them themselves then there these they this those through to too under up very was we were what when where which while who why will with would you your aesthetic aesthetics core cores style styles visual visually imagery image images often used using use also known based centered focused includes include including associated related around').split(/\s+/));
+
+const QUALITY_DEFS = [
+  {id:'nature',label:'Nature / organic',color:'#61a97d',terms:['nature','natural','forest','woodland','plant','flower','garden','moss','mushroom','animal','rural','cottage','farm','earth','ocean','sea','water','rain','sun','landscape','outdoor','organic']},
+  {id:'digital',label:'Digital / networked',color:'#55a8cb',terms:['internet','web','digital','computer','software','screen','online','cyber','pixel','glitch','website','technology','virtual','game','gaming','interface','social media','meme','algorithm','electronic']},
+  {id:'nostalgia',label:'Nostalgia / memory',color:'#7d8ee9',terms:['nostalgia','nostalgic','memory','childhood','retro','vintage','past','old','2000s','1990s','1980s','y2k','reminiscent','familiar','archive','historical']},
+  {id:'fantasy',label:'Fantasy / myth',color:'#9c7ade',terms:['fantasy','magic','magical','fairy','angel','demon','witch','wizard','myth','mythical','dragon','kingdom','royal','spiritual','heaven','goddess','creature','enchanted','folklore']},
+  {id:'dark',label:'Dark / unsettling',color:'#a2737e',terms:['dark','horror','fear','scary','unsettling','disturbing','gore','blood','death','decay','macabre','nightmare','trauma','creepy','ominous','dread','violent','haunted','ghost','body']},
+  {id:'cute',label:'Cute / playful',color:'#e280b1',terms:['cute','kawaii','playful','childlike','toy','doll','candy','pastel','cartoon','sanrio','pink','sweet','adorable','bright','colorful','fun','baby','soft']},
+  {id:'fashion',label:'Fashion / identity',color:'#d18a6e',terms:['fashion','clothing','clothes','outfit','style','identity','gender','queer','feminine','masculine','beauty','makeup','accessory','dress','subculture','self expression','appearance','model']},
+  {id:'place',label:'Place / environment',color:'#8e9b63',terms:['place','space','room','architecture','building','city','suburb','mall','hotel','school','office','home','interior','environment','location','landscape','pool','plaza','cabin','hospital']},
+  {id:'activity',label:'Activity / practice',color:'#b4a25b',terms:['activity','sport','tennis','camp','craft','making','collecting','gaming','travel','adventure','work','writing','reading','cooking','gardening','exercise','music','dance','ritual','lifestyle']},
+  {id:'emotion',label:'Emotion / meaning',color:'#e2a348',terms:['emotion','emotional','hope','love','comfort','healing','sad','sadness','joy','happy','peace','calm','feeling','lonely','loneliness','connection','mental health','life','meaning','romance']},
+  {id:'archive',label:'Archive / knowledge',color:'#b4936b',terms:['archive','library','museum','book','academic','knowledge','history','historical','document','journal','diary','letter','writer','poet','study','collection','taxonomy','index','research']},
+  {id:'cosmic',label:'Cosmic / futurist',color:'#637caf',terms:['space','cosmic','planet','star','moon','sun','alien','future','futuristic','science','robot','spacecraft','universe','astronomy','aurora','prehistoric','technology','utopia']}
+];
+
+const AXIS_DEFS = [
+  {left:'Organic',right:'Synthetic',leftTerms:['nature','organic','plant','wood','earth','rural','animal','forest'],rightTerms:['digital','synthetic','computer','technology','plastic','chrome','machine','cyber']},
+  {left:'Comforting',right:'Unsettling',leftTerms:['comfort','calm','hope','soft','cozy','peace','joy','cute','healing'],rightTerms:['horror','fear','unsettling','dark','gore','trauma','creepy','dread','nightmare']},
+  {left:'Nostalgic',right:'Futurist',leftTerms:['nostalgia','memory','retro','vintage','past','childhood','old'],rightTerms:['future','futuristic','cyber','space','technology','robot','science','utopia']},
+  {left:'Real-world',right:'Fantastical',leftTerms:['real','everyday','lifestyle','office','school','sport','fashion','home'],rightTerms:['fantasy','magic','dream','surreal','fairy','myth','angel','dragon','imaginary']},
+  {left:'Personal',right:'Collective',leftTerms:['personal','self','identity','individual','diary','private','emotion'],rightTerms:['community','culture','social','collective','public','movement','subculture','fandom']},
+  {left:'Minimal',right:'Maximal',leftTerms:['minimal','simple','clean','quiet','empty','restrained'],rightTerms:['maximal','clutter','colorful','layered','ornate','busy','loud']},
+  {left:'Passive',right:'Active',leftTerms:['still','quiet','viewing','dream','rest','calm','interior'],rightTerms:['activity','sport','adventure','travel','dance','work','making','exploration']},
+  {left:'Light',right:'Dark',leftTerms:['light','bright','sun','pastel','white','hope','heaven'],rightTerms:['dark','black','night','shadow','goth','horror','death']}
+];
+
+const REGION_PALETTE = ['#7e8fff','#5cad7c','#dc80ad','#56a6c5','#9b77dd','#9c727b','#d0876b','#607bac','#b59467','#a5a160','#e0a246','#9d82ad','#5ca3a0','#c36e83','#8e9eb9'];
+const state = {
+  nodes: [], edges: [], adjacency: new Map(), regions: [], images: new Map(),
+  selected: null, hover: null, query: '', colorMode: 'region', showEdges: true,
+  thresholdQuantile: .42, zoom: 1, panX: 0, panY: 0, dragging: false,
+  dragNode: null, lastPointer: null, width: 1, height: 1, ratio: 1
+};
+
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const stage = document.getElementById('stage');
+const side = document.getElementById('side');
+const tooltip = document.getElementById('tooltip');
+const loader = document.getElementById('loader');
+
+function clean(value){return String(value || '').replace(/\s+/g,' ').trim();}
+function normalize(value){return clean(value).normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\([^)]*\)/g,'').replace(/[^a-z0-9]+/g,'');}
+function assetUrl(path){return String(path || '').split('/').map(encodeURIComponent).join('/');}
+function clamp(value,min,max){return Math.max(min,Math.min(max,value));}
+function hash(value){let h=2166136261;for(const ch of String(value)){h^=ch.charCodeAt(0);h=Math.imul(h,16777619);}return h>>>0;}
+function seeded01(value){return (hash(value)%100000)/100000;}
+function titleCase(value){return String(value).replace(/\b\w/g,(m)=>m.toUpperCase());}
+function setProgress(percent,title,text){document.getElementById('progressBar').style.width=`${clamp(percent,0,100)}%`;document.getElementById('progressText').textContent=text||'';if(title)document.getElementById('loaderTitle').textContent=title;}
+
+function tokenize(text){
+  const cleaned=String(text||'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9\s-]/g,' ');
+  const words=cleaned.split(/\s+/).filter((word)=>word.length>2&&!STOP.has(word)&&!/^\d+$/.test(word));
+  const tokens=[];
+  for(let i=0;i<words.length;i++){
+    let word=words[i].replace(/^-+|-+$/g,'');
+    if(word.endsWith('ies')&&word.length>5)word=word.slice(0,-3)+'y';
+    else if(word.endsWith('ing')&&word.length>6)word=word.slice(0,-3);
+    else if(word.endsWith('ed')&&word.length>5)word=word.slice(0,-2);
+    else if(word.endsWith('s')&&word.length>4)word=word.slice(0,-1);
+    if(word&&!STOP.has(word))tokens.push(word);
+    if(i<words.length-1){const pair=`${words[i]} ${words[i+1]}`;if(!STOP.has(words[i])&&!STOP.has(words[i+1]))tokens.push(pair);}
+  }
+  return tokens;
+}
+
+async function fetchManifest(){
+  const response=await fetch(`${MANIFEST_URL}?v=${Date.now()}`,{cache:'no-store'});
+  if(!response.ok)throw new Error(`Index returned ${response.status}`);
+  return response.json();
+}
+
+async function fetchWikiMetadata(names){
+  const result=new Map();
+  const batches=[];
+  for(let i=0;i<names.length;i+=24)batches.push(names.slice(i,i+24));
+  for(let index=0;index<batches.length;index++){
+    const batch=batches[index];
+    setProgress(10+(index/batches.length)*24,'Reading cultural descriptions',`Aesthetics Wiki batch ${index+1} of ${batches.length}`);
+    try{
+      const url=new URL(WIKI_API);
+      const params={action:'query',format:'json',formatversion:'2',origin:'*',prop:'extracts|categories',exintro:'1',explaintext:'1',cllimit:'max',redirects:'1',titles:batch.join('|')};
+      Object.entries(params).forEach(([key,value])=>url.searchParams.set(key,value));
+      const response=await fetch(url);
+      if(!response.ok)throw new Error(String(response.status));
+      const data=await response.json();
+      const aliases=new Map(batch.map((name)=>[normalize(name),normalize(name)]));
+      (data?.query?.normalized||[]).forEach((item)=>aliases.set(normalize(item.from),normalize(item.to)));
+      (data?.query?.redirects||[]).forEach((item)=>aliases.set(normalize(item.from),normalize(item.to)));
+      const pages=new Map((data?.query?.pages||[]).filter((page)=>!page.missing).map((page)=>[normalize(page.title),page]));
+      batch.forEach((name)=>{
+        let key=normalize(name);
+        for(let hop=0;hop<3;hop++)key=aliases.get(key)||key;
+        const page=pages.get(key)||pages.get(normalize(name));
+        if(page){result.set(name,{title:page.title,extract:page.extract||'',categories:(page.categories||[]).map((item)=>item.title||'')});}
+      });
+    }catch(error){console.warn('Wiki metadata batch failed',error);}
+  }
+  return result;
+}
+
+function phraseScore(text,terms){
+  const haystack=` ${String(text||'').toLowerCase().replace(/[^a-z0-9]+/g,' ')} `;
+  let score=0;
+  terms.forEach((term)=>{
+    const needle=String(term).toLowerCase();
+    let start=0;
+    while(true){const found=haystack.indexOf(needle,start);if(found<0)break;score+=needle.includes(' ')?1.45:1;start=found+needle.length;}
+  });
+  return score;
+}
+
+function computeQualities(node){
+  const nameText=`${node.name} ${node.name} ${node.name}`;
+  const text=`${nameText} ${node.extract} ${node.categories.join(' ')}`;
+  const raw=QUALITY_DEFS.map((quality)=>phraseScore(text,quality.terms));
+  const max=Math.max(1,...raw);
+  node.qualities=raw.map((value,index)=>({def:QUALITY_DEFS[index],value:1-Math.exp(-(value/max)*1.9)}));
+  node.qualityVector=node.qualities.map((item)=>item.value);
+  node.dominantQuality=node.qualities.slice().sort((a,b)=>b.value-a.value)[0];
+  node.axes=AXIS_DEFS.map((axis)=>{
+    const left=phraseScore(text,axis.leftTerms),right=phraseScore(text,axis.rightTerms);
+    return {axis,value:left+right?right/(left+right):.5};
+  });
+  node.axisVector=node.axes.map((item)=>item.value);
+}
+
+function buildTfidf(nodes){
+  const df=new Map();
+  nodes.forEach((node)=>{
+    const tokens=tokenize(`${node.name} ${node.name} ${node.extract} ${node.categories.join(' ')}`);
+    node.termCounts=new Map();
+    tokens.forEach((token)=>node.termCounts.set(token,(node.termCounts.get(token)||0)+1));
+    new Set(node.termCounts.keys()).forEach((term)=>df.set(term,(df.get(term)||0)+1));
+  });
+  const allowed=new Set([...df.entries()].filter(([,count])=>count>=2&&count<=nodes.length*.6).sort((a,b)=>{
+    const ai=Math.log((nodes.length+1)/(a[1]+1)),bi=Math.log((nodes.length+1)/(b[1]+1));
+    return bi-ai;
+  }).slice(0,700).map(([term])=>term));
+  nodes.forEach((node)=>{
+    const vector=new Map();let norm=0;const total=[...node.termCounts.values()].reduce((sum,value)=>sum+value,0)||1;
+    node.termCounts.forEach((count,term)=>{if(!allowed.has(term))return;const tf=count/total,idf=Math.log((nodes.length+1)/((df.get(term)||0)+1))+1;const value=tf*idf;vector.set(term,value);norm+=value*value;});
+    norm=Math.sqrt(norm)||1;vector.forEach((value,term)=>vector.set(term,value/norm));node.textVector=vector;
+    node.topTerms=[...vector.entries()].sort((a,b)=>b[1]-a[1]).slice(0,12).map(([term])=>term);
+  });
+}
+
+function sparseCosine(a,b){let sum=0;const [small,large]=a.size<b.size?[a,b]:[b,a];small.forEach((value,key)=>{const other=large.get(key);if(other)sum+=value*other;});return sum;}
+function denseCosine(a,b){let dot=0,aa=0,bb=0;for(let i=0;i<a.length;i++){dot+=a[i]*b[i];aa+=a[i]*a[i];bb+=b[i]*b[i];}return aa&&bb?dot/Math.sqrt(aa*bb):0;}
+function axisSimilarity(a,b){let distance=0;for(let i=0;i<a.length;i++)distance+=Math.abs(a[i]-b[i]);return 1-distance/a.length;}
+function similarity(a,b){return clamp(.58*sparseCosine(a.textVector,b.textVector)+.27*denseCosine(a.qualityVector,b.qualityVector)+.15*axisSimilarity(a.axisVector,b.axisVector),0,1);}
+
+function buildEdges(nodes){
+  const all=[];
+  for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++)all.push({a:nodes[i],b:nodes[j],weight:similarity(nodes[i],nodes[j])});
+  const candidate=new Map(nodes.map((node)=>[node.id,[]]));
+  all.forEach((edge)=>{candidate.get(edge.a.id).push(edge);candidate.get(edge.b.id).push(edge);});
+  const chosen=new Map();
+  nodes.forEach((node)=>{
+    candidate.get(node.id).sort((x,y)=>y.weight-x.weight).slice(0,6).forEach((edge)=>{
+      const key=[edge.a.id,edge.b.id].sort().join('|');
+      if(!chosen.has(key)||chosen.get(key).weight<edge.weight)chosen.set(key,edge);
+    });
+  });
+  const edges=[...chosen.values()].filter((edge)=>edge.weight>.12).sort((a,b)=>b.weight-a.weight);
+  state.adjacency=new Map(nodes.map((node)=>[node.id,[]]));
+  edges.forEach((edge)=>{state.adjacency.get(edge.a.id).push({node:edge.b,edge});state.adjacency.get(edge.b.id).push({node:edge.a,edge});});
+  return edges;
+}
+
+function detectRegions(nodes,edges){
+  const strongWeights=edges.map((edge)=>edge.weight).sort((a,b)=>a-b);
+  const cutoff=strongWeights[Math.floor(strongWeights.length*.58)]||.3;
+  const labels=new Map(nodes.map((node,index)=>[node.id,index]));
+  const ordered=nodes.slice().sort((a,b)=>hash(a.name)-hash(b.name));
+  for(let iteration=0;iteration<24;iteration++){
+    let changed=0;
+    ordered.forEach((node)=>{
+      const scores=new Map([[labels.get(node.id),.08]]);
+      (state.adjacency.get(node.id)||[]).filter(({edge})=>edge.weight>=cutoff).forEach(({node:other,edge})=>{
+        const label=labels.get(other.id);scores.set(label,(scores.get(label)||0)+Math.pow(edge.weight,2));
+      });
+      const current=labels.get(node.id);
+      const best=[...scores.entries()].sort((a,b)=>b[1]-a[1]||a[0]-b[0])[0]?.[0]??current;
+      if(best!==current){labels.set(node.id,best);changed++;}
+    });
+    if(!changed)break;
+  }
+  let groups=new Map();nodes.forEach((node)=>{const label=labels.get(node.id);if(!groups.has(label))groups.set(label,[]);groups.get(label).push(node);});
+  const large=[...groups.entries()].filter(([,members])=>members.length>=3);
+  const small=[...groups.entries()].filter(([,members])=>members.length<3);
+  small.forEach(([,members])=>members.forEach((node)=>{
+    let best=null,bestScore=-1;
+    large.forEach(([label,candidates])=>{const score=Math.max(...candidates.map((other)=>similarity(node,other)));if(score>bestScore){bestScore=score;best=label;}});
+    if(best!==null)labels.set(node.id,best);
+  }));
+  groups=new Map();nodes.forEach((node)=>{const label=labels.get(node.id);if(!groups.has(label))groups.set(label,[]);groups.get(label).push(node);});
+  const regions=[...groups.values()].sort((a,b)=>b.length-a.length).map((members,index)=>{
+    const qualityTotals=QUALITY_DEFS.map(()=>0);const termTotals=new Map();
+    members.forEach((node)=>{
+      node.qualityVector.forEach((value,i)=>qualityTotals[i]+=value);
+      node.topTerms.slice(0,7).forEach((term)=>termTotals.set(term,(termTotals.get(term)||0)+1));
+    });
+    const topQuality=qualityTotals.map((value,i)=>({value,def:QUALITY_DEFS[i]})).sort((a,b)=>b.value-a.value)[0].def;
+    const topTerm=[...termTotals.entries()].filter(([term])=>!topQuality.terms.includes(term)).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]))[0]?.[0];
+    const label=topTerm?`${topQuality.label.split(' / ')[0]} + ${titleCase(topTerm)}`:topQuality.label;
+    const region={id:index,label,color:REGION_PALETTE[index%REGION_PALETTE.length],members,topQuality};
+    members.forEach((node)=>node.region=region);
+    return region;
+  });
+  return regions;
+}
+
+function initializePositions(nodes){
+  nodes.forEach((node,index)=>{
+    const angle=seeded01(`${node.name}-a`)*Math.PI*2;
+    const radius=180+seeded01(`${node.name}-r`)*620;
+    node.x=Math.cos(angle)*radius;node.y=Math.sin(angle)*radius;
+    node.vx=0;node.vy=0;node.radius=9+Math.min(18,Math.sqrt(node.graphicCount)*1.45);
+    node.index=index;
+  });
+}
+
+async function simulateLayout(nodes,edges){
+  initializePositions(nodes);
+  const iterations=620,batch=10;
+  for(let start=0;start<iterations;start+=batch){
+    for(let step=0;step<batch&&start+step<iterations;step++){
+      const iteration=start+step,alpha=1-iteration/iterations;
+      for(let i=0;i<nodes.length;i++){
+        const a=nodes[i];
+        for(let j=i+1;j<nodes.length;j++){
+          const b=nodes[j];let dx=b.x-a.x,dy=b.y-a.y;let d2=dx*dx+dy*dy;
+          if(d2<1){dx=(seeded01(a.name+b.name)-.5)*2;dy=(seeded01(b.name+a.name)-.5)*2;d2=dx*dx+dy*dy+1;}
+          const d=Math.sqrt(d2),minimum=a.radius+b.radius+9;
+          const repulse=(2350*alpha+.8*2350)/Math.max(120,d2);
+          const fx=dx/d*repulse,fy=dy/d*repulse;a.vx-=fx;a.vy-=fy;b.vx+=fx;b.vy+=fy;
+          if(d<minimum){const push=(minimum-d)*.038;const px=dx/d*push,py=dy/d*push;a.vx-=px;a.vy-=py;b.vx+=px;b.vy+=py;}
+        }
+      }
+      edges.forEach((edge)=>{
+        const a=edge.a,b=edge.b,dx=b.x-a.x,dy=b.y-a.y,d=Math.sqrt(dx*dx+dy*dy)||1;
+        const desired=235-edge.weight*145;
+        const strength=.0035+.013*Math.pow(edge.weight,2);
+        const force=(d-desired)*strength*alpha;
+        const fx=dx/d*force,fy=dy/d*force;a.vx+=fx;a.vy+=fy;b.vx-=fx;b.vy-=fy;
+      });
+      nodes.forEach((node)=>{
+        node.vx+=-node.x*.00065*alpha;node.vy+=-node.y*.00065*alpha;
+        node.vx*=.82;node.vy*=.82;node.x+=node.vx;node.y+=node.vy;
+      });
+    }
+    setProgress(58+(start/iterations)*35,'Finding emergent structure',`Force simulation ${Math.min(iterations,start+batch)} of ${iterations}`);
+    draw();
+    await new Promise((resolve)=>requestAnimationFrame(resolve));
+  }
+}
+
+function quantileThreshold(){
+  if(!state.edges.length)return 1;
+  const weights=state.edges.map((edge)=>edge.weight).sort((a,b)=>a-b);
+  return weights[Math.floor(clamp(state.thresholdQuantile,0,1)*(weights.length-1))]||0;
+}
+function visibleEdges(){const threshold=quantileThreshold();return state.showEdges?state.edges.filter((edge)=>edge.weight>=threshold):[];}
+function nodeColor(node){return state.colorMode==='quality'?(node.dominantQuality?.def.color||'#8e96a5'):(node.region?.color||'#8e96a5');}
+function worldToScreen(x,y){return{x:x*state.zoom+state.panX+state.width/2,y:y*state.zoom+state.panY+state.height/2};}
+function screenToWorld(x,y){return{x:(x-state.panX-state.width/2)/state.zoom,y:(y-state.panY-state.height/2)/state.zoom};}
+
+function draw(){
+  if(!ctx)return;
+  ctx.clearRect(0,0,state.width,state.height);ctx.save();ctx.lineCap='round';
+  const matches=new Set(state.nodes.filter((node)=>!state.query||node.name.toLowerCase().includes(state.query)).map((node)=>node.id));
+  const connected=state.selected?new Set((state.adjacency.get(state.selected.id)||[]).map((item)=>item.node.id)):null;
+  visibleEdges().forEach((edge)=>{
+    const a=worldToScreen(edge.a.x,edge.a.y),b=worldToScreen(edge.b.x,edge.b.y);
+    const active=!state.selected||edge.a===state.selected||edge.b===state.selected;
+    ctx.globalAlpha=state.selected?(active?.72:.025):(.06+edge.weight*.2);
+    ctx.strokeStyle=active&&state.selected?'#aebdd8':'#667080';ctx.lineWidth=active&&state.selected?1.6:.6+edge.weight;
+    ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
+  });
+  state.nodes.forEach((node)=>{
+    const p=worldToScreen(node.x,node.y),r=Math.max(5,node.radius*state.zoom);
+    const match=matches.has(node.id),isConnected=!state.selected||node===state.selected||connected?.has(node.id);
+    ctx.globalAlpha=match&&isConnected?1:.09;
+    ctx.save();ctx.beginPath();ctx.arc(p.x,p.y,r,0,Math.PI*2);ctx.clip();
+    const image=state.images.get(node.id);
+    if(image&&image.complete&&image.naturalWidth){const side=Math.min(image.naturalWidth,image.naturalHeight),sx=(image.naturalWidth-side)/2,sy=(image.naturalHeight-side)/2;ctx.drawImage(image,sx,sy,side,side,p.x-r,p.y-r,r*2,r*2);}else{ctx.fillStyle=nodeColor(node);ctx.fillRect(p.x-r,p.y-r,r*2,r*2);}
+    ctx.restore();ctx.beginPath();ctx.arc(p.x,p.y,r,0,Math.PI*2);ctx.strokeStyle=node===state.selected?'#fff':nodeColor(node);ctx.lineWidth=node===state.selected?3:2;ctx.stroke();
+    if(node===state.hover&&node!==state.selected){ctx.beginPath();ctx.arc(p.x,p.y,r+3,0,Math.PI*2);ctx.strokeStyle='#fff';ctx.lineWidth=1.2;ctx.stroke();}
+    const showLabel=state.zoom>.72||node===state.selected||node===state.hover||(state.query&&match);
+    if(showLabel){ctx.globalAlpha=match&&isConnected?1:.12;ctx.fillStyle='#eef1f5';ctx.font=`${node===state.selected?700:560} ${clamp(10*state.zoom,8,12)}px Inter, sans-serif`;ctx.textAlign='left';ctx.fillText(node.name,p.x+r+5,p.y+3);}
+  });
+  ctx.restore();
+}
+
+function resize(){
+  const rect=stage.getBoundingClientRect();state.width=Math.max(320,rect.width);state.height=Math.max(420,rect.height);state.ratio=Math.min(2,devicePixelRatio||1);
+  canvas.width=Math.round(state.width*state.ratio);canvas.height=Math.round(state.height*state.ratio);canvas.style.width=`${state.width}px`;canvas.style.height=`${state.height}px`;ctx.setTransform(state.ratio,0,0,state.ratio,0,0);draw();
+}
+function fitMap(){
+  if(!state.nodes.length)return;const xs=state.nodes.map((node)=>node.x),ys=state.nodes.map((node)=>node.y);const minX=Math.min(...xs),maxX=Math.max(...xs),minY=Math.min(...ys),maxY=Math.max(...ys);const spanX=Math.max(1,maxX-minX),spanY=Math.max(1,maxY-minY);state.zoom=clamp(Math.min((state.width-180)/spanX,(state.height-150)/spanY),.18,1.15);state.panX=-(minX+maxX)/2*state.zoom;state.panY=-(minY+maxY)/2*state.zoom;draw();
+}
+function nodeAt(x,y){let best=null,distance=Infinity;state.nodes.forEach((node)=>{const p=worldToScreen(node.x,node.y),r=Math.max(8,node.radius*state.zoom),d=Math.hypot(p.x-x,p.y-y);if(d<=r+5&&d<distance){best=node;distance=d;}});return best;}
+
+function sharedReasons(a,b){
+  const qualities=a.qualities.map((item,index)=>({label:item.def.label,value:Math.min(item.value,b.qualities[index].value)})).filter((item)=>item.value>.3).sort((x,y)=>y.value-x.value).slice(0,2).map((item)=>item.label.split(' / ')[0]);
+  const terms=a.topTerms.filter((term)=>b.topTerms.includes(term)).slice(0,3);
+  return [...qualities,...terms.map(titleCase)].slice(0,4);
+}
+function showTooltip(node,event){
+  if(!node){tooltip.classList.remove('show');return;}
+  const top=node.qualities.slice().sort((a,b)=>b.value-a.value).slice(0,2).map((item)=>item.def.label.split(' / ')[0]).join(' · ');
+  tooltip.innerHTML=`<b>${escapeHtml(node.name)}</b><span>${escapeHtml(node.region?.label||'Unresolved pattern')}</span><p>${escapeHtml(top)} · ${node.graphicCount.toLocaleString()} indexed graphics</p>`;tooltip.classList.add('show');
+  const rect=stage.getBoundingClientRect(),tip=tooltip.getBoundingClientRect();let left=event.clientX-rect.left+14,topPos=event.clientY-rect.top+14;if(left+tip.width>rect.width-10)left-=tip.width+28;if(topPos+tip.height>rect.height-10)topPos-=tip.height+28;tooltip.style.left=`${Math.max(8,left)}px`;tooltip.style.top=`${Math.max(8,topPos)}px`;
+}
+function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,(char)=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));}
+
+function selectNode(node,center=false){
+  state.selected=node||null;
+  if(!node){side.innerHTML='<div class="empty"><div><div class="mark">∞</div><h3>Select an individual node</h3><p>Its qualities, semantic position, and closest<br>relationships will appear here.</p></div></div>';draw();return;}
+  if(center){state.panX=-node.x*state.zoom;state.panY=-node.y*state.zoom;}
+  const neighbors=(state.adjacency.get(node.id)||[]).slice().sort((a,b)=>b.edge.weight-a.edge.weight).slice(0,8);
+  const image=node.thumbnail?assetUrl(node.thumbnail):'';
+  const qualities=node.qualities.slice().sort((a,b)=>b.value-a.value).slice(0,6);
+  side.innerHTML=`<div class="side-inner">
+    ${image?`<img class="hero-image" src="${image}" alt="">`:''}
+    <div class="region">Emergent region · ${escapeHtml(node.region?.label||'Unresolved')}</div>
+    <h2 class="detail-title">${escapeHtml(node.name)}</h2>
+    <p class="description">${escapeHtml(node.extract||`${node.name} is an indexed aesthetic formation. Its current position is calculated from the language, qualities, and evidence attached to it.`)}</p>
+    <dl class="meta"><div><dt>Indexed graphics</dt><dd>${node.graphicCount.toLocaleString()}</dd></div><div><dt>Connections modeled</dt><dd>${(state.adjacency.get(node.id)||[]).length}</dd></div></dl>
+    <div class="section-title">Dominant qualities</div>
+    <div class="quality-list">${qualities.map((item)=>`<span class="quality-pill"><i style="background:${item.def.color}"></i>${escapeHtml(item.def.label)} · ${Math.round(item.value*100)}</span>`).join('')}</div>
+    <div class="section-title">Quality fingerprint</div>
+    ${node.axes.map((item)=>`<div class="axis"><span>${escapeHtml(item.axis.left)}</span><div class="axis-track"><i style="left:${Math.round(item.value*100)}%"></i></div><span>${escapeHtml(item.axis.right)}</span></div>`).join('')}
+    <div class="section-title">Nearest formations</div>
+    <div>${neighbors.map(({node:other,edge})=>{const reasons=sharedReasons(node,other).join(' · ')||'overall fingerprint';return `<button class="neighbor" data-node="${escapeHtml(other.id)}"><span>${other.thumbnail?`<img src="${assetUrl(other.thumbnail)}" alt="">`:`<i class="fallback" style="display:block;background:${nodeColor(other)}"></i>`}</span><span><b>${escapeHtml(other.name)}</b><small>${escapeHtml(reasons)}</small></span><em>${Math.round(edge.weight*100)}%</em></button>`;}).join('')}</div>
+    <a class="open-core" href="${ROOT}?core=${encodeURIComponent(node.name)}" target="_blank">Open ${escapeHtml(node.name)} →</a>
+    <div class="method">This placement is not an official classification. It is an experimental inference generated from article language, visual-evidence density, twelve subject qualities, and eight bipolar aesthetic axes.</div>
+  </div>`;
+  side.querySelectorAll('[data-node]').forEach((button)=>button.addEventListener('click',()=>selectNode(state.nodes.find((item)=>item.id===button.dataset.node),true)));
+  draw();
+}
+
+function buildLegend(){
+  const legend=document.getElementById('legend');
+  if(state.colorMode==='quality'){
+    legend.innerHTML=`<div class="legend-head"><span>Dominant qualities</span><span>${QUALITY_DEFS.length}</span></div>${QUALITY_DEFS.map((item)=>`<div class="legend-row"><i style="background:${item.color}"></i><span>${escapeHtml(item.label)}</span></div>`).join('')}`;
+  }else{
+    legend.innerHTML=`<div class="legend-head"><span>Emergent regions</span><span>${state.regions.length}</span></div>${state.regions.map((region)=>`<div class="legend-row"><i style="background:${region.color}"></i><span title="${escapeHtml(region.label)}">${escapeHtml(region.label)}</span><em>${region.members.length}</em></div>`).join('')}`;
+  }
+}
+function updateThreshold(){const threshold=quantileThreshold();document.getElementById('thresholdLabel').textContent=`${Math.round(threshold*100)}%+`;document.getElementById('edgeCount').textContent=visibleEdges().length;draw();}
+
+function wireInteractions(){
+  document.getElementById('search').addEventListener('input',(event)=>{state.query=event.target.value.toLowerCase().trim();draw();});
+  document.getElementById('threshold').addEventListener('input',(event)=>{state.thresholdQuantile=Number(event.target.value)/100;updateThreshold();});
+  document.getElementById('colorMode').addEventListener('change',(event)=>{state.colorMode=event.target.value;buildLegend();selectNode(state.selected);draw();});
+  document.getElementById('fitButton').addEventListener('click',fitMap);
+  document.getElementById('edgesButton').addEventListener('click',(event)=>{state.showEdges=!state.showEdges;event.currentTarget.classList.toggle('active',state.showEdges);updateThreshold();});
+  canvas.addEventListener('pointerdown',(event)=>{
+    if(event.button!==0)return;canvas.setPointerCapture(event.pointerId);const rect=canvas.getBoundingClientRect(),x=event.clientX-rect.left,y=event.clientY-rect.top,node=nodeAt(x,y);state.lastPointer={x:event.clientX,y:event.clientY};if(node){state.dragNode=node;selectNode(node);}else state.dragging=true;
+  });
+  canvas.addEventListener('pointermove',(event)=>{
+    const rect=canvas.getBoundingClientRect(),x=event.clientX-rect.left,y=event.clientY-rect.top;
+    if(state.dragNode&&state.lastPointer){const world=screenToWorld(x,y);state.dragNode.x=world.x;state.dragNode.y=world.y;state.lastPointer={x:event.clientX,y:event.clientY};tooltip.classList.remove('show');draw();return;}
+    if(state.dragging&&state.lastPointer){state.panX+=event.clientX-state.lastPointer.x;state.panY+=event.clientY-state.lastPointer.y;state.lastPointer={x:event.clientX,y:event.clientY};tooltip.classList.remove('show');draw();return;}
+    const node=nodeAt(x,y);state.hover=node;canvas.style.cursor=node?'pointer':'grab';showTooltip(node,event);draw();
+  });
+  const stop=()=>{state.dragging=false;state.dragNode=null;state.lastPointer=null;};canvas.addEventListener('pointerup',stop);canvas.addEventListener('pointercancel',stop);canvas.addEventListener('pointerleave',(event)=>{if(!state.dragging&&!state.dragNode){state.hover=null;showTooltip(null,event);draw();}});
+  canvas.addEventListener('dblclick',(event)=>{const rect=canvas.getBoundingClientRect(),node=nodeAt(event.clientX-rect.left,event.clientY-rect.top);if(node)window.open(`${ROOT}?core=${encodeURIComponent(node.name)}`,'_blank');});
+  canvas.addEventListener('wheel',(event)=>{event.preventDefault();const before=state.zoom;state.zoom=clamp(state.zoom*(event.deltaY<0?1.12:.89),.15,2.8);const rect=stage.getBoundingClientRect(),mx=event.clientX-rect.left-state.width/2-state.panX,my=event.clientY-rect.top-state.height/2-state.panY;state.panX-=mx*(state.zoom/before-1);state.panY-=my*(state.zoom/before-1);draw();},{passive:false});
+  window.addEventListener('resize',resize);
+}
+
+async function boot(){
+  wireInteractions();resize();
+  setProgress(4,'Reading the CORE index','Loading the current manifest');
+  const manifest=await fetchManifest();
+  const records=Object.entries(manifest||{}).filter(([name])=>normalize(name)!=='cannibalcore').map(([name,paths])=>({id:normalize(name),name,paths:Array.isArray(paths)?paths.filter(Boolean):[],graphicCount:Array.isArray(paths)?paths.length:0,thumbnail:Array.isArray(paths)?paths[0]||'':''}));
+  document.getElementById('nodeCount').textContent=records.length;
+  const metadata=await fetchWikiMetadata(records.map((record)=>record.name));
+  setProgress(36,'Building quality fingerprints','Scoring subject qualities and aesthetic axes');
+  records.forEach((node)=>{const info=metadata.get(node.name)||{};node.extract=clean(info.extract||'');node.categories=info.categories||[];computeQualities(node);if(node.thumbnail){const image=new Image();image.decoding='async';image.src=assetUrl(node.thumbnail);image.onload=draw;state.images.set(node.id,image);}});
+  buildTfidf(records);state.nodes=records;
+  setProgress(48,'Calculating relationships','Comparing every node against every other node');
+  state.edges=buildEdges(records);state.regions=detectRegions(records,state.edges);
+  document.getElementById('regionCount').textContent=state.regions.length;
+  buildLegend();updateThreshold();resize();
+  await simulateLayout(records,state.edges);
+  fitMap();setProgress(100,'Map complete',`${records.length} nodes, ${state.edges.length} modeled relationships, ${state.regions.length} emergent regions`);
+  setTimeout(()=>loader.classList.add('hidden'),420);
+}
+
+boot().catch((error)=>{
+  console.error(error);document.getElementById('loaderTitle').textContent='The map could not be completed';document.getElementById('loaderCopy').textContent=String(error?.message||error);document.getElementById('progressText').textContent='The index remains unchanged.';document.getElementById('progressBar').style.background='var(--danger)';
+});
+</script>
+</body>
+</html>
